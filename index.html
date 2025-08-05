@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes it responsive -->
+  <title>Chore Chart</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #ff06ea;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .chore {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 16px;
+      margin: 10px 0;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      font-size: 1rem;
+    }
+
+    .chore.done {
+      text-decoration: line-through;
+      color: #aaa;
+      background: #e6ffe6;
+    }
+
+    .progress-container {
+      margin-top: 30px;
+    }
+
+    .progress-label {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background: #ddd;
+      height: 30px;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #4caf50;
+      text-align: center;
+      color: white;
+      line-height: 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 15px;
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sam's Chore Chart</h1>
+
+  <div id="choreList"></div>
+
+  <div class="progress-container">
+    <div class="progress-label">Progress to 500 Robux Gift Card</div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progressFill">0%</div>
+    </div>
+  </div>
+
+  <script>
+    // ✅ List your chores here
+    const chores = [
+      { task: "Ask about chores #1", done: true },
+      { task: "Ask about chores #2", done: false },
+      { task: "Ask about chores #3", done: false },
+      { task: "Ask about chores #4", done: false },
+      { task: "Ask about chores #5", done: false }
+    ];
+
+    // ✅ Manually set progress (0–100)
+    const manualProgress = 60;
+
+    const choreList = document.getElementById("choreList");
+    const progressFill = document.getElementById("progressFill");
+
+    function renderChores() {
+      choreList.innerHTML = "";
+
+      chores.forEach((chore) => {
+        const div = document.createElement("div");
+        div.className = "chore" + (chore.done ? " done" : "");
+        div.textContent = chore.task;
+        choreList.appendChild(div);
+      });
+
+      // Set progress manually
+      progressFill.style.width = manualProgress + "%";
+      progressFill.textContent = manualProgress + "%";
+    }
+
+    renderChores();
+  </script>
+</body>
+</html>
